@@ -47,4 +47,9 @@ public class TopicoController {
         if (datos.mensaje() != null) topico.setMensaje(datos.mensaje());
     }
 
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void eliminarTopico(@PathVariable Long id) {
+        topicoRepository.deleteById(id);
+    }
 }

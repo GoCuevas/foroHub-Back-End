@@ -1,74 +1,109 @@
-# Foro Hub - Back End
+# ForoHub - Backend
 
-Este es el proyecto final del curso Back End en Oracle ONE - Alura Latam. Se trata de una API REST desarrollada con Spring Boot, que simula el backend de un foro donde los usuarios pueden crear, ver, actualizar y eliminar tópicos.
+Sistema de foros desarrollado como parte del programa Oracle Next Education (ONE), con enfoque en el manejo de tópicos de discusión. Proyecto backend desarrollado con Java y Spring Boot.
 
-## 🚀 Funcionalidades principales
+## 🌟 Características principales
+- Registro de tópicos (POST)
+- Listado de tópicos (GET)
+- Actualización de tópicos (PUT)
+- Eliminación de tópicos (DELETE)
 
-- Crear nuevos tópicos
-- Listar todos los tópicos
-- Visualizar un tópico por ID
-- Actualizar un tópico
-- Eliminar un tópico
-- Autenticación y autorización de usuarios (JWT)
-- Persistencia de datos con base de datos relacional
-- Validaciones de negocio
-- Documentación con Swagger
+---
 
-## 🛠️ Tecnologías utilizadas
-
+## 🚀 Tecnologías utilizadas
 - Java 17
-- Spring Boot 3.3.9
+- Spring Boot 3.5.4
 - Maven
-- Spring Web
-- Spring Data JPA
-- Spring Security
-- Lombok
-- H2 (dev) / PostgreSQL o MySQL (prod)
-- Swagger / OpenAPI
+- PostgreSQL
+- Hibernate / Spring Data JPA
+- Postman (para pruebas de la API)
+- Git & GitHub
 
-## 🔧 Cómo ejecutar
+---
 
-1. Clona el repositorio:
-   ```bash
-   git clone https://github.com/TU_USUARIO/foro-hub-backend.git
-   cd foro-hub-backend
-   ```
-
-2. Asegúrate de tener Java 17 y Maven instalados.
-
-3. Ejecuta el proyecto:
-   ```bash
-   mvn spring-boot:run
-   ```
-
-4. Accede a la API en:
-   ```
-   http://localhost:8080
-   ```
-
-5. Accede a la documentación Swagger:
-   ```
-   http://localhost:8080/swagger-ui/index.html
-   ```
-
-## 🗂 Estructura del proyecto
-
+## 📊 Estructura del proyecto
 ```
-src
-├── main
-│   ├── java
-│   │   └── com.foro
-│   │       ├── controller
-│   │       ├── service
-│   │       ├── repository
-│   │       ├── model
-│   │       ├── dto
-│   │       └── config
-│   └── resources
-│       └── application.yml
+foroHub/
+├── src/
+│   └── main/
+│       ├── java/
+│       │   └── com/aluracursos/foroHub/
+│       │       ├── controller/
+│       │       ├── dto/topico/
+│       │       ├── model/
+│       │       └── repository/
+│       └── resources/
+│           └── application.properties
+└── pom.xml
 ```
 
-## 👨‍💻 Autor
+---
 
-- Gonzalo Cuevas
+## 🔄 Endpoints disponibles
+
+### ✉️ Crear un tópico
+**POST** `/topicos`
+```json
+{
+  "titulo": "¿Cómo usar DTOs en Spring Boot?",
+  "mensaje": "Estoy aprendiendo sobre DTOs y necesito ayuda.",
+  "autor": "Juan Pérez",
+  "curso": "Spring Boot"
+}
+```
+
+### 📄 Listar tópicos
+**GET** `/topicos`
+- Retorna una lista con ID, título, mensaje y fecha de creación.
+
+### ✏️ Actualizar tópico
+**PUT** `/topicos`
+```json
+{
+  "id": 1,
+  "titulo": "Título actualizado",
+  "mensaje": "Nuevo mensaje editado"
+}
+```
+
+### ❌ Eliminar tópico
+**DELETE** `/topicos/{id}`
+- Elimina el tópico con el ID correspondiente.
+
+---
+
+## ⚙️ Configuración local
+1. Clonar el repositorio:
+   ```bash
+   git clone https://github.com/GoCuevas/foroHub-Back-End.git
+   ```
+2. Abrir el proyecto en IntelliJ IDEA
+3. Crear base de datos en PostgreSQL con nombre `forohub`
+4. Ajustar credenciales en `application.properties` o usar variables de entorno:
+```properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/forohub
+spring.datasource.username=${LTR_USER}
+spring.datasource.password=${LTR_PASSWORD}
+```
+5. Ejecutar el proyecto desde IntelliJ o con:
+```bash
+mvn spring-boot:run
+```
+
+---
+
+## 🕵️‍\ Proyecto mantenido por
+**Gonzalo Cuevas**
 - [LinkedIn](https://www.linkedin.com/in/gonzalocuevas-maritimeagent)
+- Desarrollador Backend Jr. | Agente Marítimo | Apasionado por la automatización y la eficiencia.
+
+---
+
+## 🔎 Estado del proyecto
+**Versión actual:** MVP funcional para evaluación final.
+- Pendiente: Seguridad con Spring Security, autenticación JWT, login, relación con entidad Usuario, documentación Swagger.
+
+---
+
+## 🌟 Gracias
+Gracias a Alura Latam y Oracle Next Education por la formación y el desafío. Proyecto creado con pasión y dedicación 💛
