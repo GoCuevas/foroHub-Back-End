@@ -1,5 +1,6 @@
 package com.aluracursos.foroHub.controller;
 
+import com.aluracursos.foroHub.dto.topico.DatosActualizarTopico;
 import com.aluracursos.foroHub.dto.topico.DatosRegistroTopico;
 import com.aluracursos.foroHub.dto.topico.DatosListadoTopico;
 import com.aluracursos.foroHub.model.Topico;
@@ -7,6 +8,8 @@ import com.aluracursos.foroHub.repository.TopicoRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import jakarta.transaction.Transactional;
+
 
 import java.util.List;
 
@@ -35,4 +38,13 @@ public class TopicoController {
                 ))
                 .toList();
     }
+
+    @PutMapping
+    @Transactional
+    public void actualizarTopico(@RequestBody @Valid DatosActualizarTopico datos) {
+        Topico topico = topicoRepository.getReferenceById(datos.id());
+        if (datos.titulo() != null) topico.setTitulo(datos.titulo());
+        if (datos.mensaje() != null) topico.setMensaje(datos.mensaje());
+    }
+
 }
